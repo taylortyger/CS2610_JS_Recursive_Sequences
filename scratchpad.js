@@ -1,12 +1,19 @@
+/*********************************************************************
+ *                          EXECUTED CODE:                           *
+ *********************************************************************/
+
 setTitle("Fib, Trib, Pell f");
 addCallGraphs(calcFibonacci(11).div, calcPell(11).div, calcTribonacci(11).div);
 var style = document.createElement('style');
 style.textContent = getCssStyles();
 document.head.appendChild(style);
 
+
+
 /*********************************************************************
  *                           FUNCTIONS                               *
  *********************************************************************/
+ 
 //--------------------------------------------------------------------
 //
 //  Set the title of the document.
@@ -17,29 +24,33 @@ function setTitle(title)
     document.title = title;
 }
 
-//--------------------------------------------------------------------
+//------------------------------------------------------------------------
 //
-//  add divs to the DOM to hold the recursive function call graphs
+//  add divs to the DOM (body) to hold the recursive function call graphs
 //
-//--------------------------------------------------------------------
+//      fibHTML, pellHTML, tribHTML: 
+//          expected to be HTML element containing resulting call graph of 
+//          the respective series/recursive function
+//
+//------------------------------------------------------------------------
 function addCallGraphs(fibHTML, pellHTML, tribHTML)
 {
     var fibDiv = document.createElement('div');
-    fibDiv.className = "fibonacci-wrap";
+    fibDiv.id = "fibonacci-section";
     var fibH2 = document.createElement('h2');
     fibH2.textContent = "Call Graph for Fibonacci Sequence:";
     fibDiv.appendChild(fibH2);
     fibDiv.appendChild(fibHTML);
     
     var pellDiv = document.createElement('div');
-    pellDiv.className = "pell-wrap";
+    pellDiv.id = "pell-section";
     var pellH2 = document.createElement('h2');
     pellH2.textContent = "Call Graph for Pell Sequence:";
     pellDiv.appendChild(pellH2);
     pellDiv.appendChild(pellHTML);
     
     var tribDiv = document.createElement('div');
-    tribDiv.className = "tribonacci-wrap";
+    tribDiv.id = "tribonacci-section";
     var tribH2 = document.createElement('h2');
     tribH2.textContent = "Call Graph for Tribonacci Sequence:";
     tribDiv.appendChild(tribH2);
@@ -56,7 +67,7 @@ function addCallGraphs(fibHTML, pellHTML, tribHTML)
 //--------------------------------------------------------------------
 //
 //  Recursively calculate the nth number in the fibonacci sequence 
-//  while building a call-graph of the recursive function.
+//  while building an HTML call-graph of the recursive function.
 //
 //--------------------------------------------------------------------
 function calcFibonacci(n)
@@ -97,7 +108,7 @@ function calcFibonacci(n)
 //--------------------------------------------------------------------
 //
 //  Recursively calculate the nth number in the pell sequence 
-//  while building a call-graph of the recursion.
+//  while building an HTML call-graph of the recursion.
 //
 //--------------------------------------------------------------------
 function calcPell(n)
@@ -138,7 +149,7 @@ function calcPell(n)
 //--------------------------------------------------------------------
 //
 //  Recursively calculate the nth number in the tribonacci sequence 
-//  while building a call-graph of the recursive function.
+//  while building an HTML call-graph of the recursive function.
 //
 //--------------------------------------------------------------------
 function calcTribonacci(n)
@@ -229,4 +240,15 @@ function getCssStyles()
         "color: #333333;" +
         "}";
     return styles;
+}
+
+function seriesInfoDivMakerFactory(seriesName, seriesFunction, seriesLink)
+{
+    return function()
+    {
+        var div = document.createElement('div');
+        div.setAttribute('class', 'series-info');
+        div.innerHTML  = '<p>The' + seriesName + 'sequence is represented by the following function:' + seriesFunction + '</p>';
+        div.innerHTML += '<p>For more details about the' + seriesName + 'sequence, <a href="' + seriesLink + '">go here to learn more.</a>'
+    }
 }

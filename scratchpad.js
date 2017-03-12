@@ -54,8 +54,9 @@ function addCallGraphs(fibHTML, pellHTML, tribHTML)
 
 //--------------------------------------------------------------------
 //
-//  Recursively calculate the nth number in the fibonacci sequence 
-//  while building an HTML call-graph of the recursive function.
+//  Fibonacci Sequence:
+//      Recursively calculate the nth number in the fibonacci sequence 
+//      while building an HTML call-graph of the recursive function.
 //
 //--------------------------------------------------------------------
 function calcFibonacci(n)
@@ -95,8 +96,9 @@ function calcFibonacci(n)
 
 //--------------------------------------------------------------------
 //
-//  Recursively calculate the nth number in the pell sequence 
-//  while building an HTML call-graph of the recursion.
+//  Pell Sequence:
+//      Recursively calculate the nth number in the pell sequence 
+//      while building an HTML call-graph of the recursion.
 //
 //--------------------------------------------------------------------
 function calcPell(n)
@@ -136,8 +138,9 @@ function calcPell(n)
 
 //--------------------------------------------------------------------
 //
-//  Recursively calculate the nth number in the tribonacci sequence 
-//  while building an HTML call-graph of the recursive function.
+//  Tribonacci Sequence:
+//      Recursively calculate the nth number in the tribonacci sequence 
+//      while building an HTML call-graph of the recursive function.
 //
 //--------------------------------------------------------------------
 function calcTribonacci(n)
@@ -236,7 +239,7 @@ function getCssStyles()
 
 //------------------------------------------------------------------------------
 //
-//  Function factory for creating functions to inject a series' info
+//  Function factory for creating functions to inject a specific series' info
 //  above the call graph:
 //      seriesName      - name of the series 
 //                              (must be how it appears elswhere in document)
@@ -251,7 +254,7 @@ function seriesInfoDivMakerFactory(seriesName, seriesFunction, seriesLink)
         var div = document.createElement('div');
         div.setAttribute('class', 'series-info');
         div.innerHTML  = '<p>The ' + seriesName + ' sequence is represented by the following function: <i>' + seriesFunction + '</i></p>';
-        div.innerHTML += '<p>For more details about the' + seriesName + 'sequence, <a href="' + seriesLink + '">go here to learn more.</a>';
+        div.innerHTML += '<p>For more details about the ' + seriesName + ' sequence, <a href="' + seriesLink + '">go here to learn more.</a>';
         var parent = document.getElementById(seriesName + '-section');
         parent.insertBefore(div, parent.firstChild.nextSibling);
     };
@@ -275,7 +278,7 @@ var addTribInfo = seriesInfoDivMakerFactory('tribonacci',
 
 //-----------------------------------------------------------------------
 //
-//  Adds series info and hyperlinks for all series to the webpage 
+//  Adds series info and hyperlinks for each series to the webpage 
 //
 //-----------------------------------------------------------------------
 function addAllSeriesInfo()
